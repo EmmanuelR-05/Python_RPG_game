@@ -1,0 +1,121 @@
+# This is a sample Python script.
+
+# Press Shift+F10 to execute it or replace it with your code.
+# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+
+import random
+potions = int
+hp = 0
+enemy1hp = 30
+print("Welcome to the start of your journey!")
+classType = int(input("What do you want to be:\n 1) Mage - Less hp, more damage\n 2) Tank - more hp, less damage\n"))
+if classType == 1:
+    hp = 20
+    potions = 5
+if classType == 2:
+    hp = 35
+    potions = 3
+print("Great Choice!")
+print("You encounter your first enemy!")
+while enemy1hp > 0 or hp > 0 or enemy1hp != 0 or hp != 0:
+    print("What do you want to do?")
+    move = int(input("1) Attack\n2) Heal\n3) Block"))
+
+    # Attack move/ Mage
+    if move == 1 and classType == 1:
+        print("You attacked")
+        dmg = random.randint(5, 12)
+        if dmg == 6:
+            dmg *= 3
+            print("Critical hit!")
+            print(f"You dealt {dmg} damage!")
+            enemy1hp = enemy1hp - dmg
+            if enemy1hp <= 0:
+                break
+            print(f"Enemy has {enemy1hp} hp left.")
+            print("Enemy's turn.")
+            edmg = random.randint(1, 6)
+            if edmg == 3:
+                edmg *= 2
+                print("Critical hit!")
+            hp = hp - edmg
+            print(f"Enemy attacked! Enemy dealt {edmg} damage.")
+            print(f"You have {hp} hp left.")
+            continue
+        print(f"You dealt {dmg} damage!")
+        enemy1hp = enemy1hp - dmg
+        print(f"Enemy has {enemy1hp} hp left.")
+        if enemy1hp <= 0:
+            break
+        print("Enemy's turn.")
+        edmg = random.randint(1, 6)
+        if edmg == 3:
+            edmg *= 2
+            print("Critical hit!")
+        hp = hp - edmg
+        print(f"Enemy attacked! Enemy dealt {edmg} damage.")
+        print(f"You have {hp} hp left.")
+
+    # Attack move/ Tank
+    if move == 1 and classType == 2:
+            print("You attacked")
+            dmg = random.randint(1, 8)
+            if dmg == 3:
+                dmg *= 4
+                print("Critical hit!")
+                print(f"You dealt {dmg} damage!")
+                enemy1hp = enemy1hp - dmg
+                if enemy1hp <= 0:
+                    break
+                print(f"Enemy has {enemy1hp} hp left.")
+                print("Enemy's turn.")
+                edmg = random.randint(1, 6)
+                if edmg == 3:
+                    edmg *= 2
+                    print("Critical hit!")
+                hp = hp - edmg
+                print(f"Enemy attacked! Enemy dealt {edmg} damage.")
+                print(f"Enemy attacked! You have {hp} hp left.")
+                continue
+            print(f"You dealt {dmg} damage!")
+            enemy1hp = enemy1hp - dmg
+            if enemy1hp <= 0:
+                break
+            print(f"Enemy has {enemy1hp} hp left.")
+            print("Enemy's turn.")
+            edmg = random.randint(1, 6)
+            if edmg == 3:
+                edmg *= 2
+                print("Critical hit!")
+            hp = hp - edmg
+            print(f"Enemy attacked! Enemy dealt {edmg} damage.")
+            print(f"Enemy attacked! You have {hp} hp left.")
+
+    #Heal turn
+    if move == 2:
+        if potions > 0:
+            print("You used a potion.")
+            hp += 10
+            print(f"You now have have {hp} hp.")
+            print(f"You have {potions} potions left")
+            potions -= 1
+        if potions == 0:
+            print("You have no potions left")
+
+    #Block turn
+    if move == 3:
+        print("You blocked the attack")
+        print(f"You have {hp} hp left")
+        print(f"Enemy has {enemy1hp} hp left")
+    if enemy1hp <= 0:
+        break
+    if hp <= 0:
+        break
+
+if enemy1hp <= 0:
+    print("Enemy hp is 0")
+    print("Good job you beat your first enemy")
+else:
+    print("You lost. Better luck next time!")
+
+
